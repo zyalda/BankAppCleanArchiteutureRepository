@@ -1,0 +1,16 @@
+[
+  {
+    "Name": "Web",
+    "Projects": [
+      {
+        "Path": "BankAppWeb\\BankAppWeb.csproj",
+        "Action": "Start",
+        "DebugTarget": "IIS Express"
+      },
+      {
+        "Path": "MyApp.Domain\\MyApp.Domain.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
