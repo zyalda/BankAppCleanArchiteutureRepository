@@ -1,4 +1,6 @@
 <Solution>
   <Project Path="BankAppWeb/BankAppWeb.csproj" />
+  <Project Path="MyApp.Application/MyApp.Application.csproj" Id="4116d16b-5acf-40c9-9e5e-e28e2fff3be8" />
   <Project Path="MyApp.Domain/MyApp.Domain.csproj" />
+  <Project Path="MyApp.Infrastructure/MyApp.Infrastructure.csproj" Id="6e5c84f3-8682-4fc0-8f24-2d79d6002d29" />
 </Solution>

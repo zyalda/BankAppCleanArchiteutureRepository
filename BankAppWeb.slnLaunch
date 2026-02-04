@@ -10,6 +10,14 @@
       {
         "Path": "MyApp.Domain\\MyApp.Domain.csproj",
         "Action": "Start"
+      },
+      {
+        "Path": "MyApp.Infrastructure\\MyApp.Infrastructure.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "MyApp.Application\\MyApp.Application.csproj",
+        "Action": "Start"
       }
     ]
   }
