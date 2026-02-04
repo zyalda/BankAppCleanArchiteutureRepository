@@ -6,7 +6,7 @@ using MyApp.Application.Interfaces;
 using MyApp.Application.ServiceInterfaces;
 using MyApp.Application.Services;
 using MyApp.Application.ServicesInterfaces;
-using MyApp.Domain.Entities;
+using MyApp.Domain;
 using MyApp.Infrastructure.Repositories;
 using MyApp.Infrastructure.UnitOfWorks;
 using System.Text;
@@ -16,12 +16,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
-                 throw new InvalidOperationException("Connection string 'BloggingContext'" +
-                " not found.");
+//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+//                 throw new InvalidOperationException("Connection string 'BloggingContext'" +
+//                " not found.");
 
-builder.Services.AddDbContext<BankAppDataContext>(options => options.UseSqlServer(
-connectionString, b => b.MigrationsAssembly(typeof(BankAppDataContext).Assembly.FullName)));
+//builder.Services.AddDbContext<BankAppDataContext>(options => options.UseSqlServer(
+//connectionString, b => b.MigrationsAssembly(typeof(BankAppDataContext).Assembly.FullName)));
 
 
 //To list a JSON object of customers informations. Informations list accounts and list transactions.
@@ -53,6 +53,8 @@ builder.Services.AddAuthentication(opt => {
    });
 
 // Dependency Injection
+builder.Services.AddBankAppDataBaseContext(builder.Configuration);
+
 builder.Services.AddScoped<ILoanRepository, LoanRepository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();

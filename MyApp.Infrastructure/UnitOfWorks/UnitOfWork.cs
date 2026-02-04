@@ -1,9 +1,6 @@
 ﻿using MyApp.Application.Interfaces;
 using MyApp.Domain.Entities;
 using MyApp.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MyApp.Infrastructure.UnitOfWorks
 {
