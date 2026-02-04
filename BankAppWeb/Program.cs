@@ -2,10 +2,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MyApp.Application;
 using MyApp.Application.Interfaces;
-using MyApp.Application.ServiceInterfaces;
-using MyApp.Application.Services;
-using MyApp.Application.ServicesInterfaces;
 using MyApp.Domain;
 using MyApp.Infrastructure.Repositories;
 using MyApp.Infrastructure.UnitOfWorks;
@@ -54,6 +52,7 @@ builder.Services.AddAuthentication(opt => {
 
 // Dependency Injection
 builder.Services.AddBankAppDataBaseContext(builder.Configuration);
+builder.Services.AddApplicationCore();
 
 builder.Services.AddScoped<ILoanRepository, LoanRepository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
@@ -62,13 +61,13 @@ builder.Services.AddScoped<IUserTypeRepository, UserTypeRepository>();
 builder.Services.AddScoped<ITransactionsRepository, TransactionsRepository>();
 builder.Services.AddScoped<ICustomerAccountRepository, CustomerAccountRepository>();
 
-builder.Services.AddScoped<IAuthenticateUserService, AuthenticateUserService>();
-builder.Services.AddScoped<ICustomerAccountService, CustomerAccountService>();
-builder.Services.AddScoped<ITransactionsServices, TransactionsServices>();
-builder.Services.AddScoped<ICustomerService, CustomerService>();
-builder.Services.AddScoped<IUserTypeService, UserTypeService>();
-builder.Services.AddScoped<IAccountService, AccountService>();
-builder.Services.AddScoped<ILoanService, LoanService>();
+//builder.Services.AddScoped<IAuthenticateUserService, AuthenticateUserService>();
+//builder.Services.AddScoped<ICustomerAccountService, CustomerAccountService>();
+//builder.Services.AddScoped<ITransactionsServices, TransactionsServices>();
+//builder.Services.AddScoped<ICustomerService, CustomerService>();
+//builder.Services.AddScoped<IUserTypeService, UserTypeService>();
+//builder.Services.AddScoped<IAccountService, AccountService>();
+//builder.Services.AddScoped<ILoanService, LoanService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddSwaggerGen(options =>
