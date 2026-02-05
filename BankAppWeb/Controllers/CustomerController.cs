@@ -70,41 +70,9 @@ namespace BankAppWeb.Controllers
             var accountSender = _accountService.GetAccount(accountIdSender);
             var balanceSender = accountSender.Balance;
 
-            if (amount > balanceSender)
-            {
-                return Ok("You do not have enough money to transact."); 
-            }else
-            {
-                var transactionSender = new Transaction
-                {
-                    AccountId = accountIdSender,
-                    Date = DateOnly.FromDateTime(DateTime.Now),
-                    Type = "Credit",
-                    Operation = "Credit in cash",
-                    Amount = amount,
-                    Balance = balanceSender
-                };
+            var transactionResult = _transactionsServices.TransactionBetweenTwoAccounts(accountIdSender, accountIdReceiver, amount, accountSender, balanceSender, _accountService);
 
-                _transactionsServices.AddTransaction(transactionSender);
-                accountSender.Balance -= amount;
-                _accountService.UpdateAccount(accountSender);
-
-                var accountReceiver = _accountService.GetAccount(accountIdReceiver);
-                var transactionReciever = new Transaction
-                {
-                    AccountId = accountIdReceiver,
-                    Date = DateOnly.FromDateTime(DateTime.Now),
-                    Type = "Credit",
-                    Operation = "Credit in cash",
-                    Amount = amount,
-                    Balance = accountReceiver.Balance
-                };
-
-                _transactionsServices.AddTransaction(transactionReciever);
-                accountReceiver.Balance += amount;
-                _accountService.UpdateAccount(accountReceiver);
-                return Ok();
-            }
+            return Ok(transactionResult);
         }
     }
 }

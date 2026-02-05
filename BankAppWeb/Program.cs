@@ -1,11 +1,7 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyApp.Application;
 using MyApp.Domain;
 using RepositoriesDependencyInjectionProject;
-using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,28 +16,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.WriteIndented = false; // Optional: for better readability
 });
 
-//Add JWT Code here.
-builder.Services.AddAuthentication(opt => {
-    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-   //Här säger vi hur vi skall jobba med JWT
-   .AddJwtBearer(opt => {
-       opt.TokenValidationParameters = new TokenValidationParameters
-       {
-           //Issuer är vem (vilken server) som utfärdat en JWT token
-           ValidateIssuer = true,
-           ValidateAudience = true,
-           ValidateLifetime = true,
-           ValidateIssuerSigningKey = true,
-           ValidIssuer = "http://localhost:51597",
-           ValidAudience = "http://localhost:51597",
-           ClockSkew = TimeSpan.FromSeconds(300),
-           IssuerSigningKey =
-      new SymmetricSecurityKey(Encoding.UTF8.GetBytes("mykey1234567&%%485734579453%&//1255362"))
-       };
-   });
-
 // Dependency Injection
+//Add JWT Code here.
+builder.Services.AddAuthenticationJwtBearer();
 builder.Services.AddBankAppDataBaseContext(builder.Configuration);
 builder.Services.AddApplicationCore();
 builder.Services.AddInfrastructureRepositories();
@@ -66,16 +43,16 @@ builder.Services.AddSwaggerGen(options =>
             Url = new Uri("https://example.com/license"),
         }
     });
-    options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
-        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        In = ParameterLocation.Header,
         Description = "Please enter your token with this format: ''Bearer YOUR_TOKEN''",
-        Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+        Type = SecuritySchemeType.ApiKey,
         BearerFormat = "JWT",
         Scheme = "bearer"
     });
-    options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
             new OpenApiSecurityScheme
