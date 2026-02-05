@@ -3,4 +3,5 @@
   <Project Path="MyApp.Application/MyApp.Application.csproj" Id="4116d16b-5acf-40c9-9e5e-e28e2fff3be8" />
   <Project Path="MyApp.Domain/MyApp.Domain.csproj" />
   <Project Path="MyApp.Infrastructure/MyApp.Infrastructure.csproj" Id="6e5c84f3-8682-4fc0-8f24-2d79d6002d29" />
+  <Project Path="RepositoriesDependencyInjectionProject/RepositoriesDependencyInjectionProject.csproj" Id="d2036153-197d-4f1b-86ba-a1c4e40d5133" />
 </Solution>

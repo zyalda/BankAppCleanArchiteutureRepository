@@ -11,6 +11,7 @@ namespace MyApp.Application
         {
             //Row below is in case we add AutoMapper objects to DB entites.
             //services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
             services.AddScoped<IAuthenticateUserService, AuthenticateUserService>();
             services.AddScoped<ICustomerAccountService, CustomerAccountService>();
             services.AddScoped<ICustomerAccountService, CustomerAccountService>();

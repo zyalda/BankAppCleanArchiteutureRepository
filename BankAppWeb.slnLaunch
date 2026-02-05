@@ -18,6 +18,10 @@
       {
         "Path": "MyApp.Application\\MyApp.Application.csproj",
         "Action": "Start"
+      },
+      {
+        "Path": "RepositoriesDependencyInjectionProject\\RepositoriesDependencyInjectionProject.csproj",
+        "Action": "Start"
       }
     ]
   }

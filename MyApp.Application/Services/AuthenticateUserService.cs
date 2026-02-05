@@ -1,8 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using MyApp.Application.ServiceInterfaces;
 using MyApp.Application.ServicesInterfaces;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

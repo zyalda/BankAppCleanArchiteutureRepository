@@ -3,23 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyApp.Application;
-using MyApp.Application.Interfaces;
 using MyApp.Domain;
-using MyApp.Infrastructure.Repositories;
-using MyApp.Infrastructure.UnitOfWorks;
+using RepositoriesDependencyInjectionProject;
 using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-
-//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
-//                 throw new InvalidOperationException("Connection string 'BloggingContext'" +
-//                " not found.");
-
-//builder.Services.AddDbContext<BankAppDataContext>(options => options.UseSqlServer(
-//connectionString, b => b.MigrationsAssembly(typeof(BankAppDataContext).Assembly.FullName)));
 
 
 //To list a JSON object of customers informations. Informations list accounts and list transactions.
@@ -53,22 +44,7 @@ builder.Services.AddAuthentication(opt => {
 // Dependency Injection
 builder.Services.AddBankAppDataBaseContext(builder.Configuration);
 builder.Services.AddApplicationCore();
-
-builder.Services.AddScoped<ILoanRepository, LoanRepository>();
-builder.Services.AddScoped<IAccountRepository, AccountRepository>();
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-builder.Services.AddScoped<IUserTypeRepository, UserTypeRepository>();
-builder.Services.AddScoped<ITransactionsRepository, TransactionsRepository>();
-builder.Services.AddScoped<ICustomerAccountRepository, CustomerAccountRepository>();
-
-//builder.Services.AddScoped<IAuthenticateUserService, AuthenticateUserService>();
-//builder.Services.AddScoped<ICustomerAccountService, CustomerAccountService>();
-//builder.Services.AddScoped<ITransactionsServices, TransactionsServices>();
-//builder.Services.AddScoped<ICustomerService, CustomerService>();
-//builder.Services.AddScoped<IUserTypeService, UserTypeService>();
-//builder.Services.AddScoped<IAccountService, AccountService>();
-//builder.Services.AddScoped<ILoanService, LoanService>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddInfrastructureRepositories();
 
 builder.Services.AddSwaggerGen(options =>
 {
