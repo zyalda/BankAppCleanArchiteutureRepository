@@ -9,6 +9,7 @@ namespace MyApp.Application
     {
         public static IServiceCollection AddApplicationCore(this IServiceCollection services)
         {
+            //Row below is in case we add AutoMapper objects to DB entites.
             //services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IAuthenticateUserService, AuthenticateUserService>();
             services.AddScoped<ICustomerAccountService, CustomerAccountService>();
