@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyApp.Application.Dtos
+﻿namespace MyApp.Application.Dtos
 {
     public class DtoCustomer
     {

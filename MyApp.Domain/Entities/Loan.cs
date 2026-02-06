@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MyApp.Domain.Entities;
+﻿namespace MyApp.Domain.Entities;
 
 public partial class Loan
 {

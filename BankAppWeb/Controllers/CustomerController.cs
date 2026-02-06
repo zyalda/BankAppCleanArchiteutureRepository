@@ -2,9 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyApp.Application.ServiceInterfaces;
 using MyApp.Application.ServicesInterfaces;
-using MyApp.Domain.Entities;
 using MyApp.Domain.StaticUserRoles;
-using Transaction = MyApp.Domain.Entities.Transaction;
 
 namespace BankAppWeb.Controllers
 {
