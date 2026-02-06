@@ -7,7 +7,7 @@ namespace MyApp.Application.ServiceInterfaces
         void UpdateAccount(Account account);
         Account GetAccount(int id);
 
-        Account Addccount(Account account);
+        Account Addccount(string frequency, int balance, int accountTypesId);
 
     }
 }

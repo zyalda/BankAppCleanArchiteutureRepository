@@ -13,8 +13,19 @@ namespace MyApp.Application.Services
             _unitOfWork = unitOfWork;
         }
 
-        public Account Addccount(Account account)
+        public Account CreateNewAccount(string frequency, int balance, int accountTypesId)
         {
+            return new Account
+            {
+                AccountTypesId = accountTypesId,
+                Frequency = frequency,
+                Balance = balance,
+                Created = DateOnly.FromDateTime(DateTime.Now),
+            };
+        }
+        public Account Addccount(string frequency, int balance, int accountTypesId)
+        {
+            var account = CreateNewAccount(frequency, balance, accountTypesId);
             _unitOfWork.AccountRepository.Add(account);
             _unitOfWork.Complete();
             return account;

@@ -48,11 +48,7 @@ namespace BankAppWeb.Controllers
             var customer = _customerService.GetCustomerById(customerId);
             if (customer != null)
             {
-                var account = new Account { AccountTypesId = accountTypesId,
-                    Frequency = frequency, Balance = balance, Created = DateOnly.FromDateTime(DateTime.Now),
-                };
-
-                var newAccount = _accountService.Addccount(account);
+                var newAccount = _accountService.Addccount(frequency, balance, accountTypesId);
 
                 _customerAccountService.AddCustomerAccount(customerId, newAccount.AccountId);
                 return Ok($"Account {newAccount.AccountId} has been created.");
