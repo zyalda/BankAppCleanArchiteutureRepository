@@ -47,15 +47,7 @@ namespace BankAppWeb.Controllers
         [Route("AddAccountToTheNewCustomer")]
         public IActionResult AddAccountToTheNewCustomer(int accountTypesId, int customerId)
         {
-            var account = new Account
-            {
-                AccountTypesId = accountTypesId,
-                Frequency = "Monthly",
-                Balance = 0,
-                Created = DateOnly.FromDateTime(DateTime.Now),
-            };
-
-            var newAccount = _accountService.Addccount(account);
+            var newAccount = _accountService.AddAccount("Monthly", 0, accountTypesId);
 
             _customerAccountService.AddCustomerAccount(customerId, newAccount.AccountId);
             return Ok($"An account has been added to customer {customerId} with account id {newAccount.AccountId}");

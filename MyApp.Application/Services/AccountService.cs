@@ -23,7 +23,7 @@ namespace MyApp.Application.Services
                 Created = DateOnly.FromDateTime(DateTime.Now),
             };
         }
-        public Account Addccount(string frequency, int balance, int accountTypesId)
+        public Account AddAccount(string frequency, int balance, int accountTypesId)
         {
             var account = CreateNewAccount(frequency, balance, accountTypesId);
             _unitOfWork.AccountRepository.Add(account);

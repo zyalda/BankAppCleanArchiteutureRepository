@@ -46,7 +46,7 @@ namespace BankAppWeb.Controllers
             var customer = _customerService.GetCustomerById(customerId);
             if (customer != null)
             {
-                var newAccount = _accountService.Addccount(frequency, balance, accountTypesId);
+                var newAccount = _accountService.AddAccount(frequency, balance, accountTypesId);
 
                 _customerAccountService.AddCustomerAccount(customerId, newAccount.AccountId);
                 return Ok($"Account {newAccount.AccountId} has been created.");
@@ -64,7 +64,7 @@ namespace BankAppWeb.Controllers
             var accountSender = _accountService.GetAccount(accountIdSender);
             var balanceSender = accountSender.Balance;
 
-            var transactionResult = _transactionsServices.TransactionBetweenTwoAccounts(accountIdSender, accountIdReceiver, amount, accountSender, balanceSender, _accountService);
+            var transactionResult = _transactionsServices.TransactionBetweenTwoAccounts(accountIdSender, accountIdReceiver, amount, accountSender, balanceSender);
 
             return Ok(transactionResult);
         }

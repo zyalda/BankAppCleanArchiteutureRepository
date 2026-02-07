@@ -9,10 +9,12 @@ namespace MyApp.Application.Services
     public class TransactionsServices : ITransactionsServices
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IAccountService _accountService;
 
-        public TransactionsServices(IUnitOfWork unitOfWork)
+        public TransactionsServices(IUnitOfWork unitOfWork, IAccountService accountService)
         {
             _unitOfWork = unitOfWork;
+            _accountService = accountService;
         }
 
         public Transaction AddTransaction(Transaction transaction)
@@ -28,7 +30,7 @@ namespace MyApp.Application.Services
             return transactions;
         }
 
-        public string TransactionBetweenTwoAccounts(int accountIdSender, int accountIdReceiver, int amount, Account accountSender, decimal balanceSender, IAccountService accountService)
+        public string TransactionBetweenTwoAccounts(int accountIdSender, int accountIdReceiver, int amount, Account accountSender, decimal balanceSender)
         {
             if (amount > balanceSender)
             {
@@ -48,9 +50,9 @@ namespace MyApp.Application.Services
 
                 AddTransaction(transactionSender);
                 accountSender.Balance -= amount;
-                accountService.UpdateAccount(accountSender);
+                _accountService.UpdateAccount(accountSender);
 
-                var accountReceiver = accountService.GetAccount(accountIdReceiver);
+                var accountReceiver = _accountService.GetAccount(accountIdReceiver);
                 var transactionReciever = new Transaction
                 {
                     AccountId = accountIdReceiver,
@@ -63,7 +65,7 @@ namespace MyApp.Application.Services
 
                 AddTransaction(transactionReciever);
                 accountReceiver.Balance += amount;
-                accountService.UpdateAccount(accountReceiver);
+                _accountService.UpdateAccount(accountReceiver);
                 return ("The transaction is complete.");
             }
         }

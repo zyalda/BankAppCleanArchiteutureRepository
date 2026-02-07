@@ -10,6 +10,6 @@ namespace MyApp.Application.ServicesInterfaces
 
         Transaction AddTransaction(Transaction transaction);
 
-        string TransactionBetweenTwoAccounts(int accountIdSender, int accountIdReceiver, int amount, Account accountSender, decimal balanceSender, IAccountService accountService);
+        string TransactionBetweenTwoAccounts(int accountIdSender, int accountIdReceiver, int amount, Account accountSender, decimal balanceSender);
     }
 }
